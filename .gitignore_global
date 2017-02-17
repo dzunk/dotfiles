@@ -1,0 +1,14 @@
+*~
+.DS_Store
+
+# Vim swap files
+*.swp
+
+# IntelliJ project settings
+.idea/
+
+# SQL dumps
+*.sql*
+
+# Log files
+*.log
