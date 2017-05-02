@@ -65,8 +65,8 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 
 " NERDTree
-autocmd VimEnter * NERDTree   " Open on startup
-autocmd VimEnter * wincmd p   " Focus on the editor window at startup
+"autocmd VimEnter * NERDTree   " Open on startup
+"autocmd VimEnter * wincmd p   " Focus on the editor window at startup
 map <C-n> :NERDTreeToggle<CR> " Quick toggle Ctrl+N
 " Close with main window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
