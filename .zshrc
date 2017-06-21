@@ -99,8 +99,4 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 # 10ms for key sequences
 KEYTIMEOUT=1
 
-# Powerline
-#source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-#powerline-daemon -q
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
