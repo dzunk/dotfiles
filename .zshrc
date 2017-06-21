@@ -89,8 +89,9 @@ export LANG=en_US.UTF-8
 # Prefer brew-installed packages over OS X built-ins
 export PATH="/Users/Matt/Projects/scripts:/usr/local/bin:$PATH"
 
-# Load rbenv
-eval "$(rbenv init -)"
+# Load chruby
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # Load composer
 export PATH="$PATH:$HOME/.composer/vendor/bin"
