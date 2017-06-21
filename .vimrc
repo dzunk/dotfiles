@@ -29,6 +29,11 @@ set softtabstop=2 " Number of columns the "tab" key should indent
 set shiftround    " Shift text to the next multiple of shiftwidth (instead of by shiftwith character count)
 set expandtab     " When you hit the "tab" key, insert spaces instead of tabs
 
+" File-specific indentation rules
+if has("autocmd")
+  autocmd Filetype php setlocal sts=4 sw=4
+end
+
 set showcmd     " Show (partial) command in status line.
 set showmatch   " Highlight matching brackets.
 set ignorecase  " Do case insensitive matching
