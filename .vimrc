@@ -82,3 +82,24 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+"let g:indent_guides_guide_size  = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=black ctermbg=0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=black ctermbg=0
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap <Leader>fp :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
