@@ -79,9 +79,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Syntastic
 let g:airline#extensions#syntastic#enabled = 1
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_checkers = ['rubocop']
 
 " Indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -101,5 +102,5 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" bind K to grep word under cursor
 nnoremap <Leader>fp :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <Leader>af :Autoformat<CR>
