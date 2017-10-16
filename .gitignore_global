@@ -12,3 +12,6 @@
 
 # Log files
 *.log
+
+# ag ignore file
+.ignore
