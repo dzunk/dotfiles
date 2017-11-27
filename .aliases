@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+alias bx='bundle exec'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias develop='git fetch; git checkout develop; git pull'
+alias dock='docker-compose'
+alias gds='git diff --staged'
+alias tap='tmux attach -t "${PWD##*/}" || tmux new-session -s "${PWD##*/}"'
