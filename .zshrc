@@ -85,6 +85,8 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source ~/.secrets
+source ~/.aliases
 
 # Prefer brew-installed packages over OS X built-ins
 export PATH="/Users/Matt/Projects/scripts:/usr/local/bin:$PATH"
