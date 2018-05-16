@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/Matt/.gitignore_global
+	excludesfile = /Users/mduszynski/.gitignore_global
 	editor = /usr/local/bin/vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -9,8 +9,10 @@
 	trustExitCode = true
 [user]
 	name = Matt Duszynski
-	email = matt@etszone.com
+	email = mduszynski@weedmaps.com
 [push]
 	default = current
 [commit]
-	template = /Users/Matt/.stCommitMsg
+	template = /Users/mduszynski/.stCommitMsg
+[credential]
+	helper = osxkeychain
