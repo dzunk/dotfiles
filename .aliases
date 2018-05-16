@@ -4,5 +4,35 @@ alias bx='bundle exec'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias develop='git fetch; git checkout develop; git pull'
 alias dock='docker-compose'
+alias derp='git commit --amend --no-edit'
 alias gds='git diff --staged'
+alias master='git fetch; git checkout master; git pull'
+alias smoke='bundle exec rake'
 alias tap='tmux attach -t "${PWD##*/}" || tmux new-session -s "${PWD##*/}"'
+
+# Cut a semver release
+# Usage: cut version optional_sha
+# Ex: cut 1.2.3
+# Ex: cut 2.3.4 35624a6f
+cut() {
+  git checkout develop
+  git pull
+  git branch release/${1}
+  if [ -z ${2} ]; then
+    git reset --hard ${2}
+  fi
+  git push
+  git checkout -
+}
+
+# Refspec push a release to a branch
+# Usage: push version branch_name
+# Ex: push 1.2.3 staging
+push() {
+  git checkout release/${1}
+  git branch --set-upstream-to origin/release/${1} release/${1}
+  git reset --hard HEAD
+  git pull
+  git push origin release/${1}:${2} -f
+  git checkout -
+}
