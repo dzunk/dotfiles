@@ -11,10 +11,10 @@ alias smoke='bundle exec rake'
 alias tap='tmux attach -t "${PWD##*/}" || tmux new-session -s "${PWD##*/}"'
 
 # Cut a semver release
-# Usage: cut version optional_sha
-# Ex: cut 1.2.3
-# Ex: cut 2.3.4 35624a6f
-cut() {
+# Usage: create-release version optional_sha
+# Ex: create-release 1.2.3
+# Ex: create-release 2.3.4 35624a6f
+create-release() {
   git checkout develop
   git pull
   git branch release/${1}
