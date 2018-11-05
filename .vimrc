@@ -45,8 +45,6 @@ set mouse=a     " Enable mouse usage in visual mode
 set backspace=2 " Make backspace work like you would expect it to
 set scrolloff=999 " Scroll the file instead of moving the cursor
 
-" Powerline status bar
-"source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 " Airline status bar
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1        " Enable tab bar
@@ -83,6 +81,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_yaml_checkers = ['yamllint']
 
 " Indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -104,3 +103,10 @@ endif
 
 nnoremap <Leader>fp :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap <Leader>af :Autoformat<CR>
+
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/shebang.sh
+    autocmd BufNewFile *_spec.rb 0r ~/.vim/templates/rspec.rb
+  augroup END
+endif
