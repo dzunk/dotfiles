@@ -8,15 +8,20 @@ alias dx='docker-compose exec'
 alias derp='git commit --amend --no-edit'
 alias gds='git diff --staged'
 alias master='git fetch; git checkout master; git pull'
+alias ncctl='nectar-collector-ctl'
 alias smoke='bundle exec rake'
 alias tap='tmux attach -t "${PWD##*/}" || tmux new-session -s "${PWD##*/}"'
 
+# SSH aliases
+alias staging="ssh -t ubuntu@10.0.117.115 'cd /var/www/current; source /etc/profile.d/rvm.sh && bundle exec rails c'"
+alias production="ssh -t ubuntu@10.0.41.90 'cd /var/www/current; source /etc/profile.d/rvm.sh && bundle exec rails c'"
+
 # Cut a semver release
-# Usage: create-release version optional_sha
-# Ex: create-release 1.2.3
-# Ex: create-release 2.3.4 35624a6f
+# Usage: create-release VERSION <SHA>
+# If a SHA is not specified, cuts at head
 create-release() {
-  git checkout develop
+  git stash
+  develop
   git pull
   git branch release/${1}
   if [ -z ${2} ]; then
@@ -27,9 +32,10 @@ create-release() {
 }
 
 # Refspec push a release to a branch
-# Usage: push version branch_name
+# Usage: push VERSION ENVIRONMENT
 # Ex: push 1.2.3 staging
 push() {
+  git stash
   git checkout release/${1}
   git branch --set-upstream-to origin/release/${1} release/${1}
   git reset --hard HEAD
@@ -37,3 +43,41 @@ push() {
   git push origin release/${1}:${2} -f
   git checkout -
 }
+
+# Get release notes for a version
+# Usage: release_notes VERSION <PREV_VERSION>
+# If PREV_VERSION is not specified, infers based on semver
+release_notes() {
+  if [ -z "${2}" ]; then
+    PREV_VERSION="$(git tag | grep "^\d*\.\d*\.\d*$" | sort -t. -k 1,1n -k 2,2n -k 3,3n | tail -n 1)"
+  else
+    PREV_VERSION="${2}"
+  fi
+  wget -o /dev/null -qO- "https://build-api.internal-weedmaps.com/repos/weedmaps/release_notes.md?base=release/${PREV_VERSION}&head=release/${1}" | clipcopy
+  open "https://github.com/GhostGroup/weedmaps/releases/new?tag=${1}"
+}
+
+# Cherry-pick a commit into a release
+# Usage: pick SHA VERSION
+pick() {
+  git stash
+  git checkout release/${2}
+  git branch --set-upstream-to origin/release/${1} release/${1}
+  git reset --hard HEAD
+  git pull
+  git cherry-pick ${1}
+  git push -f
+  git checkout -
+}
+
+# Begin the production release process
+# Usage: ship VERSION
+ship() {
+  push ${1} sidekiq
+  open "https://app.datadoghq.com/screen/291860/core"
+  open "https://rpm.newrelic.com/accounts/65414/applications/2014141"
+  open "https://app.honeybadger.io/projects/50402/faults?sort=last_seen_desc&q=environment%3A%22production%22%E2%80%81-is%3Aresolved%E2%80%81-is%3Aignored%E2%80%81"
+  open "https://weedmaps.com/login?mode=email&return_path=/sidekiq"
+  open "https://github.com/GhostGroup/weedmaps/releases"
+}
+
