@@ -2,19 +2,20 @@
 
 alias bx='bundle exec'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias derp='git commit --amend --no-edit'
 alias develop='git fetch; git checkout develop; git pull'
 alias dock='docker-compose'
 alias dx='docker-compose exec'
-alias derp='git commit --amend --no-edit'
+alias dxa='docker-compose exec app'
 alias gds='git diff --staged'
+alias kill-sophos='while true; do sudo kill -9 $(pgrep Sophos) >/dev/null 2>/dev/null; sleep 5; done'
 alias master='git fetch; git checkout master; git pull'
 alias ncctl='nectar-collector-ctl'
 alias smoke='bundle exec rake'
 alias tap='tmux attach -t "${PWD##*/}" || tmux new-session -s "${PWD##*/}"'
 
-# SSH aliases
-alias staging="ssh -t ubuntu@10.0.117.115 'cd /var/www/current; source /etc/profile.d/rvm.sh && bundle exec rails c'"
-alias production="ssh -t ubuntu@10.0.41.90 'cd /var/www/current; source /etc/profile.d/rvm.sh && bundle exec rails c'"
+alias stop-api-services="cd ~/Projects/weedmaps_api && make it stop && cd -"
+alias stop-core-services="cd ~/Projects/weedmaps && make it stop && cd -"
 
 # Cut a semver release
 # Usage: create-release VERSION <SHA>
