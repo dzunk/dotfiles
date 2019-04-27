@@ -82,6 +82,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_yaml_checkers = ['yamllint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'yarn run eslint --fix'
 
 " Indent guides
 let g:indent_guides_enable_on_vim_startup = 1
