@@ -18,12 +18,11 @@ alias stop-api-services="cd ~/Projects/weedmaps_api && make it stop && cd -"
 alias stop-core-services="cd ~/Projects/weedmaps && make it stop && cd -"
 
 # Cut a semver release
-# Usage: create-release VERSION <SHA>
+# Usage: cutter VERSION <SHA>
 # If a SHA is not specified, cuts at head
-create-release() {
+cutter() {
   git stash
   develop
-  git pull
   git branch release/${1}
   if [ -z ${2} ]; then
     git reset --hard ${2}
@@ -46,16 +45,16 @@ push() {
 }
 
 # Get release notes for a version
-# Usage: release_notes VERSION <PREV_VERSION>
+# Usage: notes VERSION <PREV_VERSION>
 # If PREV_VERSION is not specified, infers based on semver
-release_notes() {
+notes() {
   if [ -z "${2}" ]; then
     PREV_VERSION="$(git tag | grep "^\d*\.\d*\.\d*$" | sort -t. -k 1,1n -k 2,2n -k 3,3n | tail -n 1)"
   else
     PREV_VERSION="${2}"
   fi
   wget -o /dev/null -qO- "https://build-api.internal-weedmaps.com/repos/weedmaps/release_notes.md?base=release/${PREV_VERSION}&head=release/${1}" | clipcopy
-  open "https://github.com/GhostGroup/weedmaps/releases/new?tag=${1}"
+  open "https://github.com/GhostGroup/weedmaps/releases/new?tag=${1}&target=release/${1}&title=${1}"
 }
 
 # Cherry-pick a commit into a release
@@ -70,15 +69,3 @@ pick() {
   git push -f
   git checkout -
 }
-
-# Begin the production release process
-# Usage: ship VERSION
-ship() {
-  push ${1} sidekiq
-  open "https://app.datadoghq.com/screen/291860/core"
-  open "https://rpm.newrelic.com/accounts/65414/applications/2014141"
-  open "https://app.honeybadger.io/projects/50402/faults?sort=last_seen_desc&q=environment%3A%22production%22%E2%80%81-is%3Aresolved%E2%80%81-is%3Aignored%E2%80%81"
-  open "https://weedmaps.com/login?mode=email&return_path=/sidekiq"
-  open "https://github.com/GhostGroup/weedmaps/releases"
-}
-
