@@ -23,11 +23,11 @@ alias stop-core-services="cd ~/Projects/weedmaps && make it stop && cd -"
 cutter() {
   git stash
   develop
-  git branch --set-upstream-to origin/release/${1} release/${1}
+  git checkout -b release/${1}
   if [ -z ${2} ]; then
     git reset --hard ${2}
   fi
-  git push
+  git push -fu
   git checkout -
 }
 
