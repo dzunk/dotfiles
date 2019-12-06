@@ -1,6 +1,7 @@
 [core]
 	excludesfile = /Users/mduszynski/.gitignore_global
 	editor = /usr/local/bin/vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -16,3 +17,5 @@
 	template = /Users/mduszynski/.stCommitMsg
 [credential]
 	helper = osxkeychain
+[diff-so-fancy]
+	stripLeadingSymbols = false
