@@ -8,7 +8,7 @@
 .idea/
 
 # SQL dumps
-*.sql*
+db/dump/*.sql*
 
 # Log files
 *.log
