@@ -27,55 +27,13 @@ alias uuid='ruby -e "require \"securerandom\"; puts SecureRandom.uuid"'
 alias stop-api-services="cd ~/Projects/weedmaps_api && make it stop && cd -"
 alias stop-core-services="cd ~/Projects/weedmaps && make it stop && cd -"
 
-# Cut a semver release
-# Usage: cutter VERSION <SHA>
-# If a SHA is not specified, cuts at head
-cutter() {
-  git stash
-  develop
-  git checkout -b release/${1}
-  if [ -z ${2} ]; then
-    git reset --hard ${2}
-  fi
-  git push -fu
-  git checkout -
-}
-
-# Refspec push a release to a branch
-# Usage: push VERSION ENVIRONMENT
-# Ex: push 1.2.3 staging
-push() {
-  git stash
-  git checkout release/${1}
-  git branch --set-upstream-to origin/release/${1} release/${1}
-  git reset --hard HEAD
-  git pull
-  git push origin release/${1}:${2} -f
-  git checkout -
-}
-
-# Get release notes for a version
-# Usage: notes VERSION <PREV_VERSION>
-# If PREV_VERSION is not specified, infers based on semver
+# Generate release notes for the current pending release
 notes() {
-  if [ -z "${2}" ]; then
-    PREV_VERSION="$(git tag | grep "^\d*\.\d*\.\d*$" | sort -t. -k 1,1n -k 2,2n -k 3,3n | tail -n 1)"
-  else
-    PREV_VERSION="${2}"
-  fi
-  wget -o /dev/null -qO- "https://build-api.internal-weedmaps.com/repos/weedmaps/release_notes.md?base=release/${PREV_VERSION}&head=release/${1}" | clipcopy
-  open "https://github.com/GhostGroup/weedmaps/releases/new?tag=${1}&target=release/${1}&title=${1}"
-}
-
-# Cherry-pick a commit into a release
-# Usage: pick SHA VERSION
-pick() {
-  git stash
-  git checkout release/${2}
-  git branch --set-upstream-to origin/release/${1} release/${1}
-  git reset --hard HEAD
-  git pull
-  git cherry-pick ${1}
-  git push -f
-  git checkout -
+  git fetch
+  prod_sha=$(git rev-parse origin/production)
+  stag_sha=$(git rev-parse origin/staging)
+  current_version=$(current-version)
+  next_version=$(increment_version.sh -m $current_version)
+  wget -o /dev/null -qO- "https://build-api.internal-weedmaps.com/repos/weedmaps/release_notes.md?base=${prod_sha}&head=${stag_sha}" | clipcopy
+  open "https://github.com/GhostGroup/weedmaps/releases/new?tag=${next_version}&target=${stag_sha}&title=${next_version}"
 }
