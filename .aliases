@@ -2,17 +2,27 @@
 
 alias bx='bundle exec'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias derp='git commit --amend --no-edit'
+alias cpc='core production console'
+alias cps='core production shell'
+alias current-version="git tag | grep '^\d\+\.\d\+\.\d\+$' | sort -t. -k 1,1n -k 2,2n -k 3,3n | tail -n 1"
+alias derp='git add --all; git commit --amend --no-edit; git push -f'
 alias develop='git fetch; git checkout develop; git pull'
 alias dock='docker-compose'
 alias dx='docker-compose exec'
 alias dxa='docker-compose exec app'
 alias gds='git diff --staged'
-alias kill-sophos='while true; do sudo kill -9 $(pgrep Sophos) >/dev/null 2>/dev/null; sleep 5; done'
+alias jib='jira_branch'
+alias kill-sophos='while true; do sudo pkill -9 Sophos >/dev/null 2>/dev/null; sleep 5; done'
 alias master='git fetch; git checkout master; git pull'
 alias ncctl='nectar-collector-ctl'
+alias pending-version='git branch | grep release/ | sort -t. -k 1,1n -k 2,2n -k 3,3n | tail -n 1 | tr -d "* release/"'
+alias rebuild='git commit --allow-empty -m "Rebuild" && git push'
+alias regen-rubocop-todo='rubocop --auto-gen-config --auto-gen-only-exclude --exclude-limit 1000'
 alias smoke='bundle exec rake'
 alias tap='tmux attach -t "${PWD##*/}" || tmux new-session -s "${PWD##*/}"'
+alias wka='who-knows-about'
+alias whatamidoing='jira_branch $(git rev-parse --abbrev-ref HEAD)'
+alias uuid='ruby -e "require \"securerandom\"; puts SecureRandom.uuid"'
 
 alias stop-api-services="cd ~/Projects/weedmaps_api && make it stop && cd -"
 alias stop-core-services="cd ~/Projects/weedmaps && make it stop && cd -"
