@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 alias bx='bundle exec'
+alias catnap='pmset displaysleepnow; sleep 5; caffeinate -u -t 1'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias cpc='core production console'
 alias cps='core production shell'
