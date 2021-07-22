@@ -19,3 +19,5 @@
 	helper = osxkeychain
 [diff-so-fancy]
 	stripLeadingSymbols = false
+[pull]
+	ff = only
