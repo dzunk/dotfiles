@@ -1,12 +1,12 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/mduszynski/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
-DEFAULT_USER=mduszynski
+ZSH_THEME="powerlevel10k/powerlevel10k"
+DEFAULT_USER=$(whoami)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir root_indicator)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history vcs)
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND='002'
@@ -89,14 +89,11 @@ source ~/.secrets
 source ~/.aliases
 
 # Prefer brew-installed packages over OS X built-ins
-export PATH="/Users/mduszynski/Projects/scripts:/usr/local/bin:$PATH"
+export PATH="$HOME/Projects/scripts:/usr/local/bin:$PATH"
 
 # Load chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
-
-# Load composer
-export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # 10ms for key sequences
 KEYTIMEOUT=1
