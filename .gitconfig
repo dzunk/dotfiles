@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/mduszynski/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = /usr/local/bin/vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
@@ -10,11 +10,11 @@
 	trustExitCode = true
 [user]
 	name = Matt Duszynski
-	email = mduszynski@weedmaps.com
+	email = mattduszynski@gmail.com
 [push]
 	default = current
 [commit]
-	template = /Users/mduszynski/.stCommitMsg
+	template = ~/.stCommitMsg
 [credential]
 	helper = osxkeychain
 [diff-so-fancy]
