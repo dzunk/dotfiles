@@ -12,11 +12,13 @@ alias gdcb='LAST_GIT_BRANCH=$(git branch --show-current); git checkout develop; 
 alias gds='git diff --staged'
 alias gfp='git push --force'
 alias gpf='git push --force'
+alias gpfo='git push --force origin'
 alias jib='jira_branch'
 alias main='git fetch; git checkout main; git pull'
 alias master='git fetch; git checkout master; git pull'
 alias rebuild='git commit --allow-empty -m "Rebuild" && git push'
 alias regen-rubocop-todo='rubocop --auto-gen-config --auto-gen-only-exclude --exclude-limit 1000'
+alias simp="find . -type f -name '*.rb' -print0 | xargs -0 sed -i '' -e"
 alias smoke='bundle exec rake'
 alias tap='tmux attach -t "${PWD##*/}" || tmux new-session -s "${PWD##*/}"'
 alias wka='who-knows-about'
