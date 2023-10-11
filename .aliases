@@ -1,4 +1,6 @@
 #!/usr/bin/env zsh
+alias bpc='backend production console'
+alias bps='backend production shell'
 alias bx='bundle exec'
 alias catnap='pmset displaysleepnow; sleep 5; caffeinate -u -t 1'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -13,14 +15,19 @@ alias gds='git diff --staged'
 alias gfp='git push --force'
 alias gpf='git push --force'
 alias gpfo='git push --force origin'
+alias gpo='git push origin'
 alias jib='jira_branch'
 alias main='git fetch; git checkout main; git pull'
 alias master='git fetch; git checkout master; git pull'
 alias rebuild='git commit --allow-empty -m "Rebuild" && git push'
 alias regen-rubocop-todo='rubocop --auto-gen-config --auto-gen-only-exclude --exclude-limit 1000'
 alias simp="find . -type f -name '*.rb' -print0 | xargs -0 sed -i '' -e"
+alias shipit="git fetch && git checkout master && git pull && git push origin master:production"
 alias smoke='bundle exec rake'
 alias tap='tmux attach -t "${PWD##*/}" || tmux new-session -s "${PWD##*/}"'
+alias tnp='tmux new-session -s "${PWD##*/}"\; split-window -h -p 66\; split-window -h -p 50\; split-window -v -p 66\; split-window -v -p 50'
+alias today='ruby -e "require \"date\"; puts Date.today"'
+alias wip="git add --all && git commit -m wip && git push"
 alias wka='who-knows-about'
 alias whatamidoing='jira_branch $(git rev-parse --abbrev-ref HEAD)'
 alias uuid='ruby -e "require \"securerandom\"; puts SecureRandom.uuid"'
