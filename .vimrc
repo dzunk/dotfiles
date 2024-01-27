@@ -134,5 +134,6 @@ if has("autocmd")
     autocmd BufNewFile *.sh 0r ~/.vim/templates/shebang.sh
     autocmd BufNewFile *_spec.rb 0r ~/.vim/templates/rspec.rb
     autocmd BufNewFile *_worker.rb 0r ~/.vim/templates/sidekiq_worker.rb
+    autocmd BufNewFile *_controller.rb 0r ~/.vim/templates/rails_controller.rb
   augroup END
 endif
