@@ -137,3 +137,18 @@ if has("autocmd")
     autocmd BufNewFile *_controller.rb 0r ~/.vim/templates/rails_controller.rb
   augroup END
 endif
+
+" Automatically create intermediate directories when saving a file
+" https://stackoverflow.com/a/4294176
+function s:MkNonExDir(file, buf)
+  if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+    let dir=fnamemodify(a:file, ':h')
+    if !isdirectory(dir)
+      call mkdir(dir, 'p')
+    endif
+  endif
+endfunction
+augroup BWCCreateDir
+  autocmd!
+  autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
