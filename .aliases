@@ -31,4 +31,4 @@ alias today='ruby -e "require \"date\"; puts Date.today"'
 alias wip="git add --all && git commit -m wip && git push"
 alias wka='who-knows-about'
 alias whatamidoing='jira_branch $(git rev-parse --abbrev-ref HEAD)'
-alias uuid='ruby -e "require \"securerandom\"; puts SecureRandom.uuid"'
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tee >(pbcopy); echo"
