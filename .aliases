@@ -21,6 +21,7 @@ alias main='git fetch; git checkout main; git pull'
 alias master='git fetch; git checkout master; git pull'
 alias rebuild='git commit --allow-empty -m "Rebuild" && git push'
 alias regen-rubocop-todo='rubocop --auto-gen-config --auto-gen-only-exclude --exclude-limit 1000'
+alias sift="sift --err-skip-line-length"
 alias simp="find . -type f -name '*.rb' -print0 | xargs -0 sed -i '' -e"
 alias shipit="git fetch && git checkout master && git pull && git push origin master:production"
 alias smoke='bundle exec rake'
