@@ -8,6 +8,7 @@ let g:ctrlp_working_path_mode = 'r' " Ctrl+P uses working directory ancestor as 
 "let g:ctrlp_regexp = 1
 
 syntax on             " Enable syntax highlighting
+set background=dark
 colorscheme solarized " Hurr durr what does this line do
 
 set ruler       " Enable line and column counter
