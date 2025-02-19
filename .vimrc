@@ -70,7 +70,7 @@ set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace characte
 " Key map for buffer navigation
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
-nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>q :bdelete<CR>
 
 " Git gud scrub
 nnoremap <Left> :echoe "Use h"<CR>
@@ -125,6 +125,7 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+nnoremap gb :G blame<CR>
 nnoremap <Leader>fp :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap <Leader>af :Autoformat<CR>
 nnoremap <Leader>wq :write\|Bdelete<CR>
