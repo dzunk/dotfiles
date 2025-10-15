@@ -13,6 +13,7 @@
 	email = mattduszynski@gmail.com
 [push]
 	default = current
+	autoSetupRemote = true
 [commit]
 	template = ~/.stCommitMsg
 [credential]
