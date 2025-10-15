@@ -1,26 +1,33 @@
 #!/usr/bin/env zsh
+alias aws='docker run --rm -it --network=host -v ~/.aws:/root/.aws -v $(pwd):/aws -e AWS_PROFILE public.ecr.aws/aws-cli/aws-cli'
 alias bpc='backend production console'
 alias bps='backend production shell'
 alias bx='bundle exec'
 alias catnap='pmset displaysleepnow; sleep 5; caffeinate -u -t 1'
+alias claude="/Users/dzunk/.claude/local/claude"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias derp='git add --all; git commit --amend --no-edit; git push -f'
 alias develop='git fetch; git checkout develop; git pull'
 alias dock='docker-compose'
 alias dx='docker-compose exec'
 alias dxa='docker-compose exec app'
-alias garbo='git checkout develop && git pull && git checkout - && git rebase develop'
+alias garbo='git checkout master && git pull && git checkout - && git rebase master'
 alias gdcb='LAST_GIT_BRANCH=$(git branch --show-current); git checkout develop; git pull; git branch -D $LAST_GIT_BRANCH'
 alias gds='git diff --staged'
 alias gfp='git push --force'
+alias gmm='git merge master'
+alias gmlm='git checkout master && git pull && git checkout - && git merge master --no-edit && git push'
 alias gpf='git push --force'
 alias gpfo='git push --force origin'
 alias gpo='git push origin'
-alias jib='jira_branch'
+alias jib='branch_jira'
 alias main='git fetch; git checkout main; git pull'
 alias master='git fetch; git checkout master; git pull'
+alias now="ruby -e 'puts \"Time: #{Time.now}\"; puts \"Timestamp: #{Time.now.to_i}\"'"
+alias r='bundle exec rails'
 alias rebuild='git commit --allow-empty -m "Rebuild" && git push'
 alias regen-rubocop-todo='rubocop --auto-gen-config --auto-gen-only-exclude --exclude-limit 1000'
+alias s="sift"
 alias sift="sift --err-skip-line-length"
 alias simp="find . -type f -name '*.rb' -print0 | xargs -0 sed -i '' -e"
 alias shipit="git fetch && git checkout master && git pull && git push origin master:production"
